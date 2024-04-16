@@ -1,5 +1,5 @@
 # Gesamtsteuerung Algenreaktor kion war hier das dritte mal heute   Finn auch
-# Finns Branch Test
+# Änderung für Raspberry Test
 ''' Änderungen für nächste Version: 
 - High-Signal über freien PIN als Fototrigger für den Foto-Raspi, dort Pause nach Foto einbauen, damit
   hier genug Zeit beibt, den Trigger wieder wegzunehmen
