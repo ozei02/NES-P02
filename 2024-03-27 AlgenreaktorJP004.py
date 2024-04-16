@@ -15,20 +15,20 @@
 # (Temperaturmessung)
 # (Fotos)
 
-from time import sleep, time
-import board
-import busio
-from adafruit_as7341 import AS7341
-import matplotlib.pyplot as plt
-import numpy as np
-import datetime
-import csv
-import os
-import glob
-from gpiozero import LED # Standard-Device, wird für Steckdosenrelais benutzt
-import adafruit_ads1x15.ads1115 as ADS
-from adafruit_ads1x15.analog_in import AnalogIn
-from sklearn.linear_model import LinearRegression
+from time import sleep, time                        # Stellt diverse Zeitfunktionen zur verfügung
+import board                                        # Ermöglicht das Arbeiten mit GPIOs auf dem Raspberry Pi (Ermöglicht Interaktion mit benutzerfreunlicherer API statt direkte Interaktion mit Hardware Pins)
+import busio                                        # Ermöglicht vereinfachte Kommunikation über serielle Busse wie I2C oder SPI
+from adafruit_as7341 import AS7341                  # Ermöglicht Interaktion mit AS7341 Farbsensor
+import matplotlib.pyplot as plt                     # Stellt Funktionen zur grafischen Darstellung von Daten bereit
+import numpy as np                                  # Stellt Funktionen zum rechnen in Matrizen usw. bereit
+import datetime                                     # Ermöglicht Arbeiten mit Datums- und Zeitinformationen
+import csv                                          # Ermöglicht Lesen und Schreiben von Daten im CSV-Format
+import os                                           # Ermöglicht Interaktion mit dem Betriebssystem auf dem Python ausgeführt wird
+import glob                                         # Ermöglicht das Durchsuchen von Dateisystemen nach Dateipfaden, die bestimmten Mustern entsprechen
+from gpiozero import LED                            # Änlich zum "board" Modul Ansprache von GPIO Pins, allerdings mit zusätzlichen speziellen Funktionen und Abstraktionen für Umgang von speziellen Komponenten, hier LED
+import adafruit_ads1x15.ads1115 as ADS              # Ermöglicht auf den ADS1115 Analog-Digital-Wandler (ADC) zuzugreifen (Messen von physikalischen Größen wie Spannung, Strom, Temperatur, ...)
+from adafruit_ads1x15.analog_in import AnalogIn     # AnalogIn Klasse wird verwendet um ein analoges Einganssignal des ADCs zu repräsentieren und in digitale Werte umzuwandeln
+from sklearn.linear_model import LinearRegression   # Dies deutet darauf hin, dass das Programm eine lineare Regressionsanalyse mit der scikit-learn-Bibliothek durchführen möchte.
 
 i2c = board.I2C()  # verwendet board.SCL und board.SDA
 sensor = AS7341(i2c)
