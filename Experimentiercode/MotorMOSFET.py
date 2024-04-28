@@ -17,6 +17,10 @@ uhrzeigersinn = GPIO.PWM(17, 50)
 # PWM mit Tastgrad 0% initialisieren
 uhrzeigersinn.start(0)
 
-uhrzeigersinn.ChangeDutyCycle(100)
-time.sleep(2)
+#Schleife zur PWM
+Tastgrad = 0
+while Tastgrad <= 100:
+    uhrzeigersinn.ChangeDutyCycle(Tastgrad)
+    time.sleep(2)
+    Tastgrad = Tastgrad + 5
 uhrzeigersinn.stop()
