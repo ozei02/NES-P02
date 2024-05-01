@@ -1,6 +1,6 @@
 #coding: utf8
 # Erforderliche Bibliotheken importieren
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO  #für engl. General Purpose Input/Output, wörtlich Allzweckeingabe/-ausgabe
 import time
 import keyboard
 
@@ -26,10 +26,10 @@ GPIO.setwarnings(False)
 # Pins als Ausgänge deklarieren
 GPIO.setup(17, GPIO.OUT)
 
-# PWM für Richtungen mit Frequenz festlegen
+# PWM= PulsWeitenModulation für Richtungen mit Frequenz festlegen
 uhrzeigersinn = GPIO.PWM(17, 50)
 
-# PWM mit Tastgrad 0% initialisieren
+# PWM mit Tastgrad 0% initialisieren; Wie viel % der Periode angeschaltet sind 
 uhrzeigersinn.start(0)
 
 # Start der Pumpe mit gewünschtem Tastgrad
