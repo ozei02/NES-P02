@@ -1,6 +1,6 @@
 #coding: utf8
 # Erforderliche Bibliotheken importieren
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO  #für engl. General Purpose Input/Output, wörtlich Allzweckeingabe/-ausgabe
 import time
 
 # Konvention für Pinnummerierung festlegen (BCM bzw. Board)
@@ -11,16 +11,16 @@ GPIO.setwarnings(False)
 # Pins als Ausgänge deklarieren
 GPIO.setup(17, GPIO.OUT)
 
-# PWM für Richtungen mit Frequenz festlegen
+# PWM= PulsWeitenModulation für Richtungen mit Frequenz festlegen
 uhrzeigersinn = GPIO.PWM(17, 50)
 
-# PWM mit Tastgrad 0% initialisieren
+# PWM mit Tastgrad 0% initialisieren; Wie viel % der Periode angeschaltet sind 
 uhrzeigersinn.start(0)
 
 #Schleife zur PWM
 Tastgrad = 0
 while Tastgrad <= 100:
-    uhrzeigersinn.ChangeDutyCycle(Tastgrad)
-    time.sleep(2)
-    Tastgrad = Tastgrad + 5
+    uhrzeigersinn.ChangeDutyCycle(Tastgrad)  #ChangeDutyCycle funktion zum änderung der Tastrate
+    time.sleep(2)                            #stopt für zwei sec den code
+    Tastgrad = Tastgrad + 5                  #alle 2 sec 5% höher
 uhrzeigersinn.stop()
