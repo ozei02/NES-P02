@@ -36,13 +36,14 @@ def distance():
         pass
     end_time = time.time()
     during = end_time - start_time
-    return during * 340 / 2 * 100
+    return during * 340 / 2 * 1000
 
 def get_average_distances():
+    global Xo, dXa
     if len(distances) < anzahl_messwerte:
         return None
     
-    elif len(distances) = anzahl_messwerte:                         # nach ersten 5 Messungen wird initial Xo aus gesetzt
+    elif len(distances) == anzahl_messwerte:                         # nach ersten 5 Messungen wird initial Xo aus gesetzt
         last_mesurements = distances[-anzahl_messwerte:]
         average_distance = sum(last_mesurements) / anzahl_messwerte
         Xo = average_distance                                       # Xo
@@ -62,7 +63,7 @@ def loop():
             average_distance = get_average_distances()
             if average_distance is not None:
                 print('average Distance (last 5 measurements): %.2f mm' % average_distance)
-        time.sleep(0.5)                                           #Messinertvall
+        time.sleep(0.5)                                           #Messintervall
 def Motor(pwm,tg):
     Pumpensteuerung = GPIO.PWM(Pout, pwm)
     Pumpensteuerung.start(0)
@@ -76,20 +77,3 @@ def destroy():
 setup()
 loop()
 Motor(50,100)
-
-
-
-#### Pumpensteuerung
-
-# PWM= PulsWeitenModulation für Richtungen mit Frequenz festlegen
-
-
-# PWM mit Tastgrad 0% initialisieren; Wie viel % der Periode angeschaltet sind 
-
-
-# Start der Pumpe mit gewünschtem Tastgrad
-
-
-#Zeit zum Programmstart
-# Prog_Startzeit = time.time()
-
