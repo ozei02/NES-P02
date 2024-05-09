@@ -60,7 +60,7 @@ def loop():
         print ('Distance: %.2f mm' % dis)
         distances.append(dis)
         if len(distances) == anzahl_messwerte:
-            Xo = get_average_distances
+            Xo = get_average_distances()
             Pumpensteuerung.ChangeDutyCycle(100)
         if len(distances) >= anzahl_messwerte:
             dXa = get_average_distances() - Xo
