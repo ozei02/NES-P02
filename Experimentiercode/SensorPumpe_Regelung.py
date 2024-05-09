@@ -47,7 +47,6 @@ def get_average_distances():
     elif len(distances) == anzahl_messwerte:                         # nach ersten 5 Messungen wird initial Xo aus gesetzt
         last_mesurements = distances[-anzahl_messwerte:]
         average_distance = sum(last_mesurements) / anzahl_messwerte
-        Xo = average_distance                                       # Xo
         return average_distance
     else:
         last_mesurements = distances[-anzahl_messwerte:]
