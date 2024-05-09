@@ -68,13 +68,10 @@ def loop():
             average_distance = get_average_distances()
             if average_distance is not None:
                 print('average Distance (last 5 measurements): %.2f mm' % average_distance)
+            if dXa >= dX:
+                time.sleep(100)
         time.sleep(0.5)                                           #Messintervall
-def Motor(pwm,tg):
-    Pumpensteuerung = GPIO.PWM(Pout, pwm)
-    Pumpensteuerung.start(0)
-    Pumpensteuerung.ChangeDutyCycle(tg)
-    if dXa >= dX: 
-        Pumpensteuerung.stop()
+
 def destroy():
     GPIO.cleanup()
 
