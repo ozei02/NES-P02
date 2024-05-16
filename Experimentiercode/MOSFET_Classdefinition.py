@@ -11,6 +11,7 @@ class MOSFET_Steuerung:
     # Setup des Output Pins und der Pulsweitenmodulation (Wird bei der Initialisierung mit durchgeführt)
     def setup(self):
         GPIO.setmode(GPIO.BCM) # Konvention der Pinnummerierung (hier BCM)
+        GPIO.setwarnings(False) # Warnungen, die das Ausführen des Programms verhindern, wenn Ausgang bereits als OUT deklariert wurde ignorieren
         GPIO.setup(self.pin, GPIO.OUT) # Definition des Pins als Output-Pin
         self.pwm = GPIO.PWM(self.pin, 50) # PWM mit 50Hz Frequenz initialisieren
         self.pwm.start(0) # PWM mit 0% Tastgrad starten
