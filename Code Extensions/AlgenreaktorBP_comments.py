@@ -416,3 +416,7 @@ except KeyboardInterrupt:
     wireless_socket("B", "off") # Lüftung ausschalten
     sensor.led = False  # Schaltet die LED aus
     print("\nSensor-LED aus - Lüftung aus - Lampen aus - PROGRAMMENDE")
+
+
+
+##test test gehts mitm hochladen
