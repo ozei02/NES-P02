@@ -15,4 +15,8 @@ except KeyboardInterrupt:
     elapsed_time = end_time - start_time # Pumpzeit berechnen
     print(f"Laufzeit: {elapsed_time:.2f} Sekunden")
 
+    # Pumpzeit in Datei abspeichern
+    with open("laufzeit.txt", "a") as file:  # Datei im Append-Modus öffnen
+        file.write(f"Laufzeit: {elapsed_time:.2f} Sekunden\n")
+
 
