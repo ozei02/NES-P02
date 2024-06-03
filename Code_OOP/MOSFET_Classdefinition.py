@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 # Definition einer Klasse für Objekte welche mit einem MOSFET angesteuert werden
-class MOSFET_Steuerung:
+class MOSFET_control:
     # Die __init__ Methode ist der Konstruktor der Klasse, wird also verwendet um neue Objekte hinzuzufügen
     def __init__(self, pin, tastgrad):
         self.pin = pin
