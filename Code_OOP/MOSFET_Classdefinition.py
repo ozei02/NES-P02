@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import tkinter as tk
-from tkinter import messagebox
 import time
 
 # Definition einer Klasse für Objekte welche mit einem MOSFET angesteuert werden
