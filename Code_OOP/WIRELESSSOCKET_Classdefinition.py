@@ -27,7 +27,7 @@ class WIRELESSSOCKET_control:
         WIRELESSSOCKET_control.OFF.on()
 
     # Definition von Klassenmethoden zum Ein- und Ausschalten der Steckdosen
-    def EIN(self):
+    def on(self):
         self.LED.off()
         WIRELESSSOCKET_control.ON.off()
         time.sleep(WIRELESSSOCKET_control.schaltzeit)
@@ -40,7 +40,7 @@ class WIRELESSSOCKET_control:
         Object_Name = self.__class__.__name__ # Name des Klassenobjekts
         print(f"{date_time}: {Object_Name} zeitgesteuert eingeschaltet nach {(self.off_time)/60:5.1f} Minuten")
     
-    def AUS(self):
+    def off(self):
         self.LED.off()
         WIRELESSSOCKET_control.OFF.off()
         time.sleep(WIRELESSSOCKET_control.schaltzeit)

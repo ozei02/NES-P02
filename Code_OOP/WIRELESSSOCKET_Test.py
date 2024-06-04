@@ -25,17 +25,17 @@ timer = time()
 while timer <= test_time:
 
     if (lamps.status == False) and (timer-lasttime_lamps_off >= lamps_off_time):
-        lamps.EIN()
+        lamps.on()
         lasttime_lamps_on = timer
 
     if (lamps.status == True) and (timer-lasttime_lamps_on >= lamps_on_time):
-        lamps.AUS()
+        lamps.off()
         lasttime_lamps_off = timer
 
     if (airpump.status == False) and (timer-lasttime_airpump_off >= airpump_off_time):
-        airpump.EIN()
+        airpump.on()
         lasttime_airpump_on = timer
 
     if (airpump.status == True) and (timer-lasttime_airpump_on >= airpump_on_time):
-        airpump.AUS()
+        airpump.off()
         lasttime_airpump_off = timer

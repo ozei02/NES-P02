@@ -5,9 +5,9 @@ import time
 # Definition einer Klasse für Objekte welche mit einem MOSFET angesteuert werden
 class MOSFET_control:
     # Die __init__ Methode ist der Konstruktor der Klasse, wird also verwendet um neue Objekte hinzuzufügen
-    def __init__(self, pin, tastgrad, startuptime):
+    def __init__(self, pin, dutycycle, startuptime):
         self.pin = pin
-        self.tastgrad = tastgrad
+        self.dutycycle = dutycycle
         self.startuptime = startuptime
         self.flooded = False # Parameter welcher auf True gesetzt wird sobald der Nutzer bestätigt dass die Leitungen der Pumpe geflutet sind
         self.setup()
@@ -24,7 +24,7 @@ class MOSFET_control:
     def on_button_click_pumpstartup(self):
         self.button_pumpstartup_clicked = True
         self.pumpstartup.destroy() # Schließt das Pop-up-Fenster
-        self.pwm.ChangeDutyCycle(self.tastgrad) # Starten der Pumpe
+        self.pwm.ChangeDutyCycle(self.dutycycle) # Starten der Pumpe
         print(f"Pumpe wird für {self.startuptime} Sekunden gestartet um Ansaug- und Auslaufschlauch zu durchfluten. Bitte warten...")
         time.sleep(self.startuptime) # Startup Zeit der Pumpe
         # Stoppen der Pumpe
@@ -66,7 +66,7 @@ class MOSFET_control:
 
     # Start der Pulsweitenmodulation mit gewünschtem Tastgrad
     def start(self):
-        self.pwm.ChangeDutyCycle(self.tastgrad)
+        self.pwm.ChangeDutyCycle(self.dutycycle)
 
     # Ende der Pulsweitenmodulation
     def stop(self):
