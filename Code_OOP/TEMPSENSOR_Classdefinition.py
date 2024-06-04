@@ -3,7 +3,7 @@ import os # Ermöglicht Interaktion mit dem Betriebssystem auf dem Python ausgef
 import time
 
 # Klassendefinition für Temperatursensoren DS18B20
-class TEMPSENSOR_control:
+class TEMPSENSOR_reading:
 
     def __init__(self):
         os.system('modprobe w1-gpio')
@@ -40,14 +40,14 @@ class TEMPSENSOR_control:
             retries -= 1
 
         if retries == 0:
-            return 998
+            self.tempC_current = 998
 
         equals_pos = lines[1].find('t=')
         if equals_pos != -1:
             temp = lines[1][equals_pos + 2:]
-            return float(temp) / 1000
+            self.tempC_current = float(temp) / 1000
         else:
-            return 999 # error
+            self.tempC_current = 999 # error
         
     def device_count(self):
         return self._count_devices

@@ -4,7 +4,7 @@ import adafruit_ads1x15.ads1115 as ADS # Ermöglicht auf den ADS1115 Analog-Digi
 import board # Ermöglicht das Arbeiten mit GPIOs auf dem Raspberry Pi (Ermöglicht Interaktion mit benutzerfreunlicherer API statt direkte Interaktion mit Hardware Pins)
 import busio # Ermöglicht vereinfachte Kommunikation über serielle Busse wie I2C oder SPI
 from adafruit_ads1x15.analog_in import AnalogIn     # AnalogIn Klasse wird verwendet um ein analoges Einganssignal des ADCs zu repräsentieren und in digitale Werte umzuwandeln
-class PHPROBE_control:
+class PHPROBE_reading:
     
     # Ansprechen der PH-Sonde
     i2c = busio.I2C(board.SCL, board.SDA) # Ansprechen über Pin SCL (GPIO 3) und Pin SDA (GPIO 2)
@@ -16,13 +16,12 @@ class PHPROBE_control:
     pHmodel = LinearRegression().fit(x, y) # lineares Kalibriermodell pH-Sonde
 
     def __init__(self):
-        self.chan = AnalogIn(PHPROBE_control.ads, ADS.P0) # Initialisiert den analogen Eingangskanal am ADC
+        self.chan = AnalogIn(PHPROBE_reading.ads, ADS.P0) # Initialisiert den analogen Eingangskanal am ADC
    
     def measure(self):
         # Messwert als Spannung
         spannung = self.chan.voltage
         # Messwert umgerechnet zu pH-Wert
-        pH = spannung * PHPROBE_control.pHmodel.coef_[0] + PHPROBE_control.pHmodel.intercept_
-        return pH
+        self.ph_value = spannung * PHPROBE_reading.pHmodel.coef_[0] + PHPROBE_reading.pHmodel.intercept_
 
     
