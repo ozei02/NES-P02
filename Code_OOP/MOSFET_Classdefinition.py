@@ -9,6 +9,7 @@ class MOSFET_control:
         self.pin = pin
         self.tastgrad = tastgrad
         self.startuptime = startuptime
+        self.flooded = False # Parameter welcher auf True gesetzt wird sobald der Nutzer bestätigt dass die Leitungen der Pumpe geflutet sind
         self.setup()
     
     # Setup des Output Pins und der Pulsweitenmodulation (Wird bei der Initialisierung mit durchgeführt)
@@ -46,6 +47,7 @@ class MOSFET_control:
     # Methode welche ausgeführt wird sobald die durchfluteten Leitungen verifiziert wurden
     def on_button_click_pumpverification(self):
         self.button_pumpverification_clicked = True
+        self.flooded = True
         self.pumpverification.destroy() # Schließt das Pop-up-Fenster
         print(f"Durchflutete Leitungen der Pumpe verifiziert. Hauptprogramm wird gestartet")
 
