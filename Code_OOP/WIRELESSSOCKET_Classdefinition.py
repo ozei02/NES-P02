@@ -4,7 +4,7 @@ import time
 import datetime
 
 # Definition einer Klasse für Objekte welche über Funksteckdosen angesteuert werden
-class FUNKSTECKDOSE_Steuerung:
+class WIRELESSSOCKET_control:
 
     # Definition von Klassenattributen welche für alle Objekte der Klasse gelten
     ON = LED(27) # BCM-Nummer 27 = Pin 13 als Impulssignal für Relais on
@@ -23,16 +23,16 @@ class FUNKSTECKDOSE_Steuerung:
     # Achtung "on" bedeutet hier "off"
     def setup(self):
         self.LED.on()
-        FUNKSTECKDOSE_Steuerung.ON.on()
-        FUNKSTECKDOSE_Steuerung.OFF.on()
+        WIRELESSSOCKET_control.ON.on()
+        WIRELESSSOCKET_control.OFF.on()
 
     # Definition von Klassenmethoden zum Ein- und Ausschalten der Steckdosen
     def EIN(self):
         self.LED.off()
-        FUNKSTECKDOSE_Steuerung.ON.off()
-        time.sleep(FUNKSTECKDOSE_Steuerung.schaltzeit)
+        WIRELESSSOCKET_control.ON.off()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
-        FUNKSTECKDOSE_Steuerung.ON.off()
+        WIRELESSSOCKET_control.ON.off()
         self.status = True # Ändern des Status des Objekts zu Eingeschaltet
         # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
         now = datetime.datetime.now() # aktuelles Datum und Zeit
@@ -42,10 +42,10 @@ class FUNKSTECKDOSE_Steuerung:
     
     def AUS(self):
         self.LED.off()
-        FUNKSTECKDOSE_Steuerung.OFF.off()
-        time.sleep(FUNKSTECKDOSE_Steuerung.schaltzeit)
+        WIRELESSSOCKET_control.OFF.off()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
-        FUNKSTECKDOSE_Steuerung.OFF.on()
+        WIRELESSSOCKET_control.OFF.on()
         self.status = False # Ändern des Status des Objekts zu Ausgeschaltet
         # Codeblock zur Ausgabe der Änderung zum ausgeschalteten Zustand im Command Fenster
         now = datetime.datetime.now() # aktuelles Datum und Zeit

@@ -1,4 +1,4 @@
-from FUNKSTECKDOSE_Classdefinition import FUNKSTECKDOSE_Steuerung
+from WIRELESSSOCKET_Classdefinition import WIRELESSSOCKET_control
 import time
 
 # Zeitstempel zum Programmstart
@@ -15,8 +15,8 @@ airpump_off_time    = 60*15         # 15 Miuten
 messzeit = 60*60*24*14 # Gesamtversuchszeit/s
 
 # Initialisieren der Klassenobjekte
-Lampen = FUNKSTECKDOSE_Steuerung(pin=17, on_time=lamps_on_time, off_time=lamps_off_time)
-Luftpumpe = FUNKSTECKDOSE_Steuerung(pin=18, on_time=airpump_on_time, off_time=airpump_off_time)
+Lampen = WIRELESSSOCKET_control(pin=17, on_time=lamps_on_time, off_time=lamps_off_time)
+Luftpumpe = WIRELESSSOCKET_control(pin=18, on_time=airpump_on_time, off_time=airpump_off_time)
 
 # Starten des Timers für die Ausführungen
 timer = time()
