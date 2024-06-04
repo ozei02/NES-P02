@@ -1,6 +1,10 @@
 # NES-P02
 Code for Raspberry Pi Project NES P02
 
+# Link zum UML-Diagramm des Projekts
+
+https://www.yworks.com/yed-live/?file=https://gist.githubusercontent.com/ozei02/38d584066ee6baa723d04a67cab76f80/raw/b08853d2e2d8df9bf3eeb296508cbe901a46f4d7/uml
+
 # Vorgehen zur Strukturierung und Erweiterung des Codes
 
 Folgend wird die Struktur gezeigt mit der in branches gearbeitet werden soll. Im "main"-Branch bleibt zunächst die ursprüngliche Datei abgelegt. Zusätzlich wurde ein neuer Ordner angelegt (Code Extensions) in dem von nun an der Code bearbeitet wird. 
