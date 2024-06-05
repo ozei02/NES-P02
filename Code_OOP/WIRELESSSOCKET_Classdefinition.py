@@ -40,6 +40,20 @@ class WIRELESSSOCKET_control:
         Object_Name = self.__class__.__name__ # Name des Klassenobjekts
         print(f"{date_time}: {Object_Name} zeitgesteuert eingeschaltet nach {(self.off_time)/60:5.1f} Minuten")
     
+    # Methode zum Einschalten bei Messungen
+    def on_for_measurement(self):
+        self.LED.off()
+        WIRELESSSOCKET_control.ON.off()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
+        self.LED.on()
+        WIRELESSSOCKET_control.ON.off()
+        self.status = True # Ändern des Status des Objekts zu Eingeschaltet
+        # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        Object_Name = self.__class__.__name__ # Name des Klassenobjekts
+        print(f"{date_time}: {Object_Name} für oder nach Messung eingeschaltet")
+
     def off(self):
         self.LED.off()
         WIRELESSSOCKET_control.OFF.off()
@@ -52,3 +66,17 @@ class WIRELESSSOCKET_control:
         date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
         Object_Name = self.__class__.__name__ # Name des Klassenobjekts
         print(f"{date_time}: {Object_Name} zeitgesteuert ausgeschaltet nach {(self.on_time)/60:5.1f} Minuten")
+
+    # Methode zum Ausschalten bei Messungen
+    def off_for_measurement(self):
+        self.LED.off()
+        WIRELESSSOCKET_control.OFF.off()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
+        self.LED.on()
+        WIRELESSSOCKET_control.OFF.on()
+        self.status = False # Ändern des Status des Objekts zu Ausgeschaltet
+        # Codeblock zur Ausgabe der Änderung zum ausgeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        Object_Name = self.__class__.__name__ # Name des Klassenobjekts
+        print(f"{date_time}: {Object_Name} für oder nach Messung ausgeschaltet")
