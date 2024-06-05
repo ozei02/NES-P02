@@ -24,45 +24,39 @@ class MOSFET_control:
     def on_button_click_pumpstartup(self):
         self.button_pumpstartup_clicked = True
         self.pumpstartup.destroy() # Schließt das Pop-up-Fenster
-        self.pwm.ChangeDutyCycle(self.dutycycle) # Starten der Pumpe
+        self.start() # Starten der Pumpe
         print(f"Pumpe wird für {self.startuptime} Sekunden gestartet um Ansaug- und Auslaufschlauch zu durchfluten. Bitte warten...")
         time.sleep(self.startuptime) # Startup Zeit der Pumpe
         # Stoppen der Pumpe
-        self.stop
-        self.verification
+        self.stop()
+        self.startup()
 
     # Methode welche als Anlaufprogramm für die Pumpe fungiert um eine komplette Durchflutung der Schläuche mit Düngemittel zu Beginn des Versuchs zu realisieren
     def startup(self):
         # Initialisierung des Pup-up-Fensters
         self.pumpstartup = tk.Tk()
-        self.pumpstartup.title("Sicherstellen von vollständig durchfluteten Leitungen der Düngepumpe")
-        # Erstellen des Buttons
-        self.button_pumpstartup = tk.Button(self.pumpstartup, text="Start", command=self.on_button_click_pumpstartup) 
-        self.button_pumpstartup.pack(pady=20)
+        self.pumpstartup.title("Startprozedur der Düngepumpe")
+        # Hinzufügen von Text
+        self.label_instruction = tk.Label(self.pumpstartup, text="Bitte sicherstellen, dass die Leitungen der Pumpe vollständig gefüllt sind.")
+        self.label_instruction.pack(pady=10)
+        # Erstellen des Buttons zum Pumpe starten
+        self.button_pumpstartup = tk.Button(self.pumpstartup, text="Pumpe durchfluten", command=self.on_button_click_pumpstartup) 
+        self.button_pumpstartup.pack(pady=10)
+        # Erstellen des Buttons zum Hauptprogramm starten
+        self.button_mainstartup = tk.Button(self.pumpstartup, text="Hauptprogramm starten", command=self.on_button_click_mainstartup) 
+        self.button_mainstartup.pack(pady=10)        
         # Variable um den Button-Klick zu verfolgen
         self.button_pumpstartup_clicked = False
+        self.button_mainstartup_clicked = False
         # Zeige das Pop-up-Fenster
         self.pumpstartup.mainloop()
 
     # Methode welche ausgeführt wird sobald die durchfluteten Leitungen verifiziert wurden
-    def on_button_click_pumpverification(self):
-        self.button_pumpverification_clicked = True
+    def on_button_click_mainstartup(self):
+        self.button_mainstartup_clicked = True
         self.flooded = True
         self.pumpverification.destroy() # Schließt das Pop-up-Fenster
-        print(f"Durchflutete Leitungen der Pumpe verifiziert. Hauptprogramm wird gestartet")
-
-    # Methode für das Pop-up welches nach dem startup als Verifikation der durchfluteten Leitungen dient
-    def verification(self):
-        # Initialisierung des Pup-up-Fensters
-        self.pumpverification = tk.Tk()
-        self.pumpverification.title("Sind die Leitungen der Düngepumpe vollständig gefüllt?")
-        # Erstellen des Buttons
-        self.button_pumpverification = tk.Button(self.pumpverification, text="Verifizieren: Hauptprogramm starten", command=self.on_button_click_pumpverification) 
-        self.button_pumpverification.pack(pady=20)
-        # Variable um den Button-Klick zu verfolgen
-        self.button_pumpverification_clicked = False
-        # Zeige das Pop-up-Fenster
-        self.pumpverification.mainloop()        
+        print(f"Durchflutete Leitungen der Pumpe verifiziert. Hauptprogramm wird gestartet")        
 
     # Start der Pulsweitenmodulation mit gewünschtem Tastgrad
     def start(self):
