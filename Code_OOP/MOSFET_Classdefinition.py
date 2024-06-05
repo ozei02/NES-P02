@@ -55,7 +55,7 @@ class MOSFET_control:
     def on_button_click_mainstartup(self):
         self.button_mainstartup_clicked = True
         self.flooded = True
-        self.pumpverification.destroy() # Schließt das Pop-up-Fenster
+        self.pumpstartup.destroy() # Schließt das Pop-up-Fenster
         print(f"Durchflutete Leitungen der Pumpe verifiziert. Hauptprogramm wird gestartet")        
 
     # Start der Pulsweitenmodulation mit gewünschtem Tastgrad
