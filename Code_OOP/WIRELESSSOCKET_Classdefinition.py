@@ -17,6 +17,7 @@ class WIRELESSSOCKET_control:
         self.on_time = on_time # Definition der Zeit die das Objekt eingeschaltet bleibt
         self.off_time = off_time # Definition der Zeit die das Objekt ausgeschaltet bleibt
         self.status = False # Der Status gibt an ob das Objekt an der Fnksteckdose an oder ausgeschaltet ist, zu Beginn ausgeschaltet
+        self.statusbeforemeasurement = False # Hilfsparameter zum Rückschalten der Objekte nach Messungen
         self.setup()
 
     # Funktion wird ebenfalls bei Initialisierung ausgeführt um Relais zu Beginn auszuschalten
