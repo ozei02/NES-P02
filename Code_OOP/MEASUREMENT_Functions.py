@@ -51,14 +51,24 @@ def measurement_bright():
         airpump.off_for_measurement()
     time.sleep(2) # Beruhigungszeit für die Messung
 
-    # Aufnehmen der Messwerte
-    photosensor.read_channels()
-    photosensor.get_algae_concentration()
-    ph_probe.measure()
-    T_sensor.tempC(0)
+    # Schleife über die Anzahl der Messungen pro Messpunkt
+    for datapoint_bright in range(parameters.datapoints_per_measuringpoint):
 
-    # Abspeichern der Messwerte
-    SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_bright)
+        # Aufnehmen des Messzeitpunkts
+        now = datetime.datetime.now()
+        date_time_bright = now.strftime("%Y-%m-%d, %H:%M:%S") 
+
+        # Aufnehmen der Messwerte
+        photosensor.read_channels()
+        photosensor.get_algae_concentration()
+        ph_probe.measure()
+        T_sensor.tempC(0)
+
+        # Abspeichern der Messwerte
+        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_bright)
+
+        # Ausgabe pro Messpunkt
+        print(f"{date_time_bright}: Einzelmessung mit Lampen an {datapoint_bright}/{parameters.datapoints_per_measuringpoint-1} done")
 
     # Zurückschalten der Schaltobjekte auf den Ausgangszustand
     if lamps.statusbeforemeasurement == True:
@@ -96,14 +106,24 @@ def measurement_dark():
         airpump.off_for_measurement()
     time.sleep(2) # Beruhigungszeit für die Messung
 
-    # Aufnehmen der Messwerte
-    photosensor.read_channels()
-    photosensor.get_algae_concentration()
-    ph_probe.measure()
-    T_sensor.tempC(0)
+    # Schleife über die Anzahl der Messungen pro Messpunkt
+    for datapoint_dark in range(parameters.datapoints_per_measuringpoint):
 
-    # Abspeichern der Messwerte
-    SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_dark)
+        # Aufnehmen des Messzeitpunkts
+        now = datetime.datetime.now()
+        date_time_dark = now.strftime("%Y-%m-%d, %H:%M:%S") 
+
+        # Aufnehmen der Messwerte
+        photosensor.read_channels()
+        photosensor.get_algae_concentration()
+        ph_probe.measure()
+        T_sensor.tempC(0)
+
+        # Abspeichern der Messwerte
+        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_dark)
+
+        # Ausgabe pro Messpunkt
+        print(f"{date_time_dark}: Einzelmessung mit Lampen aus {datapoint_dark}/{parameters.datapoints_per_measuringpoint-1} done")
 
     # Ausschalten der LED des Photosensors
     photosensor.led = False

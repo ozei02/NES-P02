@@ -28,6 +28,9 @@ class parameters:
     # Abtastzeit der Kamera
     sampletime_cam = 60*60*1 # 1 Stunde
 
+    # Anzahl Messungen pro Messpunkt
+    datapoints_per_measuringpoint = 5
+
     # Parameter für Hardware (nur bei Änderungen der Hardware anpassen)
 
     # Feste Parameter der Düngerpumpe
@@ -43,4 +46,7 @@ class parameters:
     lamps_pin = 17
     airpump_pin = 18
     fertilizerpump_pin = 25
+
+    # Berechnung Anzahl Messpunkte
+    datapoints_overall = runtime/sampletime_measurements
     

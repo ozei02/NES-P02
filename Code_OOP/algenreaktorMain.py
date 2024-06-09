@@ -15,6 +15,7 @@ lasttime_lamps_off  = 0             # Zeitstempel Lampen
 lasttime_airpump_on = 0             # Zeitstempel Pumpe
 lasttime_airpump_off= 0             # Zeitstempel Pumpe
 lasttime_fertilizer = 0             # Zeitstempel Düngepumpe
+datapoint = 0                       # Anzahl Messungen
 
 # Initialisieren der Aktoren
 lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin, on_time=parameters.lamps_on_time, off_time=parameters.lamps_off_time)
@@ -68,7 +69,9 @@ try:
             if timer-lasttime_measurement >= parameters.sampletime_measurements:
                 lasttime_measurement = timer
                 measurement_bright()
-                measurement_dark() 
+                measurement_dark()
+                print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
+                datapoint += 1 
 
             # Aufnehmen der Fotos
             if timer-lasttime_foto >= parameters.sampletime_cam:
