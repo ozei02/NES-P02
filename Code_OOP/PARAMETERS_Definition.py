@@ -3,8 +3,9 @@
 class parameters:
     
     # Dateinamen für Messdateien
-    filename_dark           = "Messreihe4_dark_BP24.csv"
-    filename_bright           = "Messreihe4_bright_BP24.csv"
+    filename_dark = "Messreihe4_dark_BP24.csv"
+    filename_bright = "Messreihe4_bright_BP24.csv"
+    
     # Gesamtversuchszeit
     runtime = 60*60*24*14 # Gesamtversuchszeit/s
 
