@@ -37,11 +37,11 @@ def measurement_bright():
     # Status der Schaltobjekte vor der Messung erfassen
     if lamps.status == True:
         lamps.statusbeforemeasurement = True
-    if lamps.status == False:
+    else:
         lamps.statusbeforemeasurement = False
     if airpump.status == True:
         airpump.statusbeforemeasurement = True
-    if airpump.status == False:
+    else:
         airpump.statusbeforemeasurement = False
 
     # Status von Lampen und Pumpe anpassen
@@ -82,11 +82,11 @@ def measurement_dark():
     # Status der Schaltobjekte vor der Messung erfassen
     if lamps.status == True:
         lamps.statusbeforemeasurement = True
-    if lamps.status == False:
+    else:
         lamps.statusbeforemeasurement = False
     if airpump.status == True:
         airpump.statusbeforemeasurement = True
-    if airpump.status == False:
+    else:
         airpump.statusbeforemeasurement = False
 
     # Status von Lampen und Pumpe anpassen
