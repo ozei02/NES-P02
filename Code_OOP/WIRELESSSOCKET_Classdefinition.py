@@ -2,13 +2,14 @@ import RPi.GPIO as GPIO
 from gpiozero import LED
 import time
 import datetime
+from PARAMETERS_Definition import parameters
 
 # Definition einer Klasse für Objekte welche über Funksteckdosen angesteuert werden
 class WIRELESSSOCKET_control:
 
     # Definition von Klassenattributen welche für alle Objekte der Klasse gelten
-    ON = LED(27) # BCM-Nummer 27 = Pin 13 als Impulssignal für Relais on
-    OFF = LED(22) # BCM-Nummer 22 = Pin 15 als Impulssignal für Relais off
+    ON = LED(parameters.wirelesssocket_pin_on) # BCM-Nummer 27 = Pin 13 als Impulssignal für Relais on
+    OFF = LED(parameters.wirelesssocket_pin_off) # BCM-Nummer 22 = Pin 15 als Impulssignal für Relais off
     schaltzeit = 0.2 # Wartezeit für zuverlässige Schaltung der Relais
 
     def __init__(self, pin, on_time, off_time):

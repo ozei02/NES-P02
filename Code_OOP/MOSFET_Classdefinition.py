@@ -1,14 +1,16 @@
 import RPi.GPIO as GPIO
 import tkinter as tk
 import time
+from PARAMETERS_Definition import parameters
 
 # Definition einer Klasse für Objekte welche mit einem MOSFET angesteuert werden
 class MOSFET_control:
     # Die __init__ Methode ist der Konstruktor der Klasse, wird also verwendet um neue Objekte hinzuzufügen
-    def __init__(self, pin, dutycycle, startuptime):
+    def __init__(self, pin, dutycycle, startuptime, actiontime):
         self.pin = pin
         self.dutycycle = dutycycle
         self.startuptime = startuptime
+        self.actiontime = actiontime
         self.flooded = False # Parameter welcher auf True gesetzt wird sobald der Nutzer bestätigt dass die Leitungen der Pumpe geflutet sind
         self.setup()
     
@@ -24,11 +26,11 @@ class MOSFET_control:
     def on_button_click_pumpstartup(self):
         self.button_pumpstartup_clicked = True
         self.pumpstartup.destroy() # Schließt das Pop-up-Fenster
-        self.start() # Starten der Pumpe
+        self.on() # Starten der Pumpe
         print(f"Pumpe wird für {self.startuptime} Sekunden gestartet um Ansaug- und Auslaufschlauch zu durchfluten. Bitte warten...")
         time.sleep(self.startuptime) # Startup Zeit der Pumpe
         # Stoppen der Pumpe
-        self.stop()
+        self.off()
         self.startup()
 
     # Methode welche als Anlaufprogramm für die Pumpe fungiert um eine komplette Durchflutung der Schläuche mit Düngemittel zu Beginn des Versuchs zu realisieren
@@ -59,11 +61,14 @@ class MOSFET_control:
         print(f"Durchflutete Leitungen der Pumpe verifiziert. Hauptprogramm wird gestartet")        
 
     # Start der Pulsweitenmodulation mit gewünschtem Tastgrad
-    def start(self):
+    def on(self):
         self.pwm.ChangeDutyCycle(self.dutycycle)
+        time.sleep(self.actiontime)
+        self.off()
+        print("Düngung durchgeführt")
 
     # Ende der Pulsweitenmodulation
-    def stop(self):
+    def off(self):
         self.pwm.ChangeDutyCycle(0)
 
     # GPIO Cleanup und stoppen der PWM
