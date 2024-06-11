@@ -5,8 +5,8 @@ class parameters:
     # Versuchsparameter
 
     # Dateinamen für Messdateien
-    filename_dark = "Messreihe4_dark_BP24.csv"
-    filename_bright = "Messreihe4_bright_BP24.csv"
+    filename_dark = "Messreihe_dark_BP24.csv"
+    filename_bright = "Messreihe_bright_BP24.csv"
     
     # Gesamtversuchszeit
     runtime = 60*60*24*14 # Gesamtversuchszeit/s
@@ -18,6 +18,10 @@ class parameters:
     # Steuerparameter der Luftpumpe
     airpump_on_time     = 60*15 # 15 Minuten
     airpump_off_time    = 60*15 # 15 Miuten
+
+    # Steuerparameter der CO2-Diffusoren
+    co2diffusor_on_time = 60*15
+    co2diffusor_off_time = 60*15
 
     # Volumen des Düngers das pro Tag in den Reaktor gegeben werden soll
     V_fertilization = 100 # ml/d
@@ -45,6 +49,7 @@ class parameters:
     wirelesssocket_pin_off = 22
     lamps_pin = 17
     airpump_pin = 18
+    co2diffusor_pin = 5
     fertilizerpump_pin = 25
 
     # Berechnung Anzahl Messpunkte
