@@ -34,7 +34,7 @@ class WIRELESSSOCKET_control:
         WIRELESSSOCKET_control.ON.off()
         time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
-        WIRELESSSOCKET_control.ON.off()
+        WIRELESSSOCKET_control.ON.on()
         self.status = True # Ändern des Status des Objekts zu Eingeschaltet
         # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
         now = datetime.datetime.now() # aktuelles Datum und Zeit
@@ -48,7 +48,7 @@ class WIRELESSSOCKET_control:
         WIRELESSSOCKET_control.ON.off()
         time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
-        WIRELESSSOCKET_control.ON.off()
+        WIRELESSSOCKET_control.ON.on()
         self.status = True # Ändern des Status des Objekts zu Eingeschaltet
         # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
         now = datetime.datetime.now() # aktuelles Datum und Zeit
@@ -61,7 +61,7 @@ class WIRELESSSOCKET_control:
         WIRELESSSOCKET_control.OFF.off()
         time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
-        WIRELESSSOCKET_control.OFF.off()
+        WIRELESSSOCKET_control.OFF.on()
         self.status = False # Ändern des Status des Objekts zu Ausgeschaltet
         # Codeblock zur Ausgabe der Änderung zum ausgeschalteten Zustand im Command Fenster
         now = datetime.datetime.now() # aktuelles Datum und Zeit
