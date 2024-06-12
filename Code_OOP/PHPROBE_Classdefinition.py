@@ -23,5 +23,6 @@ class PHPROBE_reading:
         spannung = self.chan.voltage
         # Messwert umgerechnet zu pH-Wert
         self.ph_value = spannung * PHPROBE_reading.pHmodel.coef_[0] + PHPROBE_reading.pHmodel.intercept_
+        return self.ph_value
 
     

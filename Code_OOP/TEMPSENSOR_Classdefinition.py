@@ -48,6 +48,8 @@ class TEMPSENSOR_reading:
             self.tempC_current = float(temp) / 1000
         else:
             self.tempC_current = 999 # error
+
+        return self.tempC_current
         
     def device_count(self):
         return self._count_devices
