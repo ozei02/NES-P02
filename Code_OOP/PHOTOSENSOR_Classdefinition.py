@@ -41,12 +41,12 @@ class PHOTOSENSOR_reading:
                 self.value = raw_value
         else:
             self.value = raw_value
-        self.algae_concentration = self.calculate_algae_concentration(self, sensor_value=self.value)
+        self.algae_concentration = self.calculate_algae_concentration()
     
     # Berechnet die Algenkonzentration basierend auf dem Sensorwert
-    def calculate_algae_concentration(self, sensor_value):
+    def calculate_algae_concentration(self):
         m = -1.0500363424809021e-06
         b = 39040.888573888915
-        algae_concentration = (sensor_value - b) / m
+        algae_concentration = (self.value - b) / m
         return algae_concentration
     
