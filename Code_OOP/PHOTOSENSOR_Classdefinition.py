@@ -28,7 +28,7 @@ class PHOTOSENSOR_reading:
 
     # Liest den Sensorwert bei clear. Passt den Wert an, wenn im "Reaktor"-Modus
     def get_algae_concentration(self, adjust_for_mode=True):
-        self.read_channels(self)
+        self.read_channels()
         raw_value = PHOTOSENSOR_reading.sensor.channel_clear
         if adjust_for_mode:
             if PHOTOSENSOR_reading.messmodus == "Reactor":
