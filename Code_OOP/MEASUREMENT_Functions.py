@@ -1,6 +1,6 @@
 import csv
 import datetime
-from WIRELESSSOCKET_Test import airpump, lamps
+from WIRELESSSOCKET_Test2 import airpump, lamps
 import time
 from PHOTOSENSOR_Classdefinition import PHOTOSENSOR_reading
 from PHPROBE_Classdefinition import PHPROBE_reading
@@ -15,10 +15,10 @@ T_sensor = TEMPSENSOR_reading() # Temperatursensor
 # Funktion zum Abspeichern der Messwerte in einer csv-Datei
 def SAVEDATA(photosensor_values, phprobe_values, temp_values, filename):
     values = [
-            photosensor_values.channel_415nm, photosensor_values.channel_445nm, photosensor_values.channel_480nm,
-            photosensor_values.channel_515nm, photosensor_values.channel_555nm, photosensor_values.channel_590nm,
-            photosensor_values.channel_630nm, photosensor_values.channel_680nm, photosensor_values.channel_clear,
-            photosensor_values.channel_nir, phprobe_values, temp_values, photosensor_values.algae_concentration
+            photosensor_values.sensor.channel_415nm, photosensor_values.sensor.channel_445nm, photosensor_values.sensor.channel_480nm,
+            photosensor_values.sensor.channel_515nm, photosensor_values.sensor.channel_555nm, photosensor_values.sensor.channel_590nm,
+            photosensor_values.sensor.channel_630nm, photosensor_values.sensor.channel_680nm, photosensor_values.sensor.channel_clear,
+            photosensor_values.sensor.channel_nir, phprobe_values, temp_values, photosensor_values.sensor.algae_concentration
             ]
     with open(filename, mode='a', newline='') as file:
         writer = csv.writer(file)
