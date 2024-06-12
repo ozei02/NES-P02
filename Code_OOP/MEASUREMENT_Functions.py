@@ -61,11 +61,11 @@ def measurement_bright():
         # Aufnehmen der Messwerte
         photosensor.read_channels()
         photosensor.get_algae_concentration()
-        ph_probe.measure()
-        T_sensor.tempC(0)
+        ph_value = ph_probe.measure()
+        T_value = T_sensor.tempC(0)
 
         # Abspeichern der Messwerte
-        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_bright)
+        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_value, temp_values=T_value, filename=parameters.filename_bright)
 
         # Ausgabe pro Messpunkt
         print(f"{date_time_bright}: Einzelmessung mit Lampen an {datapoint_bright}/{parameters.datapoints_per_measuringpoint-1} done")
@@ -116,11 +116,11 @@ def measurement_dark():
         # Aufnehmen der Messwerte
         photosensor.read_channels()
         photosensor.get_algae_concentration()
-        ph_probe.measure()
-        T_sensor.tempC(0)
+        ph_value = ph_probe.measure()
+        T_value = T_sensor.tempC(0)
 
         # Abspeichern der Messwerte
-        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_probe, temp_values=T_sensor, filename=parameters.filename_dark)
+        SAVEDATA(photosensor_values=photosensor, phprobe_values=ph_value, temp_values=T_value, filename=parameters.filename_dark)
 
         # Ausgabe pro Messpunkt
         print(f"{date_time_dark}: Einzelmessung mit Lampen aus {datapoint_dark}/{parameters.datapoints_per_measuringpoint-1} done")
