@@ -18,7 +18,7 @@ def SAVEDATA(photosensor_values, phprobe_values, temp_values, filename):
             photosensor_values.sensor.channel_415nm, photosensor_values.sensor.channel_445nm, photosensor_values.sensor.channel_480nm,
             photosensor_values.sensor.channel_515nm, photosensor_values.sensor.channel_555nm, photosensor_values.sensor.channel_590nm,
             photosensor_values.sensor.channel_630nm, photosensor_values.sensor.channel_680nm, photosensor_values.sensor.channel_clear,
-            photosensor_values.sensor.channel_nir, phprobe_values, temp_values, photosensor_values.sensor.algae_concentration
+            photosensor_values.sensor.channel_nir, phprobe_values, temp_values, photosensor_values.algae_concentration
             ]
     with open(filename, mode='a', newline='') as file:
         writer = csv.writer(file)
