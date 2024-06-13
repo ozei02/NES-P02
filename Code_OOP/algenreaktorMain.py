@@ -1,7 +1,7 @@
 from PARAMETERS_Definition import parameters
 from WIRELESSSOCKET_Classdefinition import WIRELESSSOCKET_control
 from MOSFET_Classdefinition import MOSFET_control
-from CAM_Classdefinition import CAM_control
+#from CAM_Classdefinition import CAM_control
 from MEASUREMENT_Functions import photosensor
 from time import time
 from MEASUREMENT_Functions import measurement_bright, measurement_dark
@@ -23,7 +23,7 @@ airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin, on_time=parameters.
 fertilizerpump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
 
 # Initialisieren der Kamera zur Fotoaufnahme
-cam = CAM_control()
+#cam = CAM_control()
 
 # Initialisieren der Timer
 startsec = time()                   # Zeitstartwert für die Messungen in s
@@ -74,11 +74,11 @@ try:
                 datapoint += 1 
 
             # Aufnehmen der Fotos
-            if timer-lasttime_foto >= parameters.sampletime_cam:
-                lasttime_foto = timer
-                # nur Fotos aufnehmen, wenn die Lampen an sind
-                if lamps.status == True: 
-                    cam.get_photo()
+#            if timer-lasttime_foto >= parameters.sampletime_cam:
+#                lasttime_foto = timer
+#                # nur Fotos aufnehmen, wenn die Lampen an sind
+#                if lamps.status == True: 
+#                    cam.get_photo()
 
             timer = time()
 
