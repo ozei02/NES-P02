@@ -29,7 +29,7 @@ def SAVEDATA(photosensor_values, phprobe_values, temp_values, filename):
         print(f"Daten gespeichert: {data_row}")
 
 # Messung mit Lampen an und Pumpe aus
-def measurement_bright():
+def measurement_bright(lamps, airpump):
 
     # Ausgabe zum Start der Messung
     print("Messung mit Hintergrundbeleuchtung gestartet")
@@ -81,7 +81,7 @@ def measurement_bright():
         airpump.off_for_measurement() 
 
 # Messung mit Lampen aus und Pumpen aus
-def measurement_dark():
+def measurement_dark(lamps, airpump):
 
     # Ausgabe zum Start der Messung
     print("Messung ohne Hintergrundbeleuchtung gestartet")

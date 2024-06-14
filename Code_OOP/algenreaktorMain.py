@@ -68,8 +68,8 @@ try:
             # Durchführen der Messungen
             if timer-lasttime_measurement >= parameters.sampletime_measurements:
                 lasttime_measurement = timer
-                measurement_bright()
-                measurement_dark()
+                measurement_bright(lamps=lamps, airpump=airpump)
+                measurement_dark(lamps=lamps, airpump=airpump)
                 print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
                 datapoint += 1 
 
