@@ -27,7 +27,7 @@ class parameters:
     V_fertilization = 100 # ml/d
 
     # Abtastzeit der Messungen
-    sampletime_measurements = 60*30 # 30 Minuten
+    sampletime_measurements = 60*2 # 30 Minuten
 
     # Abtastzeit der Kamera
     sampletime_cam = 60*60*1 # 1 Stunde
