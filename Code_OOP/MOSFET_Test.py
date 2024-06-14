@@ -8,7 +8,7 @@ from PARAMETERS_Definition import parameters
 # Pin je nach Anschluss an den Raspberry anpassen
 # Tastgrad je nach Netzteil und Nennspannung der Pumpe bestimmen
 # Startzeit beschreibt im Fall der Düngepumpe die Laufzeit bis die Leitungen komplett mit Düngemittel befüllt sind
-fertilizer_pump = MOSFET_control(pin=17,dutycycle=39, startuptime=3, actiontime=parameters.fertilizerpump_actiontime)
+fertilizer_pump = MOSFET_control(pin=parameters.fertilizerpump_pin,dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
 
 # Verwendung von try und finally um sicherzustellen dass die Pumpe stoppt sollte während dem Pumpenprogramm ein Fehler auftreten
 try:
