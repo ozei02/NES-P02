@@ -1,6 +1,5 @@
 import csv
 import datetime
-from WIRELESSSOCKET_Test2 import airpump, lamps
 import time
 from PHOTOSENSOR_Classdefinition import PHOTOSENSOR_reading
 from PHPROBE_Classdefinition import PHPROBE_reading
