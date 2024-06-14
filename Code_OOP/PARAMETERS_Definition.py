@@ -30,7 +30,7 @@ class parameters:
     sampletime_measurements = 60*2 # 30 Minuten
 
     # Abtastzeit der Kamera
-    sampletime_cam = 60*60*1 # 1 Stunde
+    sampletime_cam = 60*1 # 1 Stunde
 
     # Anzahl Messungen pro Messpunkt
     datapoints_per_measuringpoint = 5
