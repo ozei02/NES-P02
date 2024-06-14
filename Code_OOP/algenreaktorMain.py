@@ -86,10 +86,10 @@ try:
 except KeyboardInterrupt:
     # Ausschalten der Düngepumpe
     fertilizerpump.off()
-    fertilizerpump.cleanup()
     # Ausschalten aller Objekte die per Funksteckdose gesteuert werden
     lamps.off()
     airpump.off()
     # Ausschalten der LED vom Photosensor
     photosensor.led = False
+    fertilizerpump.cleanup()
     print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - PROGRAMMENDE")
