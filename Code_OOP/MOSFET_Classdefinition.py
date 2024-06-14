@@ -26,7 +26,7 @@ class MOSFET_control:
     def on_button_click_pumpstartup(self):
         self.button_pumpstartup_clicked = True
         self.pumpstartup.destroy() # Schließt das Pop-up-Fenster
-        self.on() # Starten der Pumpe
+        self.pwm.ChangeDutyCycle(self.dutycycle) # Starten der Pumpe
         print(f"Pumpe wird für {self.startuptime} Sekunden gestartet um Ansaug- und Auslaufschlauch zu durchfluten. Bitte warten...")
         time.sleep(self.startuptime) # Startup Zeit der Pumpe
         # Stoppen der Pumpe
