@@ -7,29 +7,30 @@ from time import time
 from MEASUREMENT_Functions import measurement_bright, measurement_dark
 import datetime
 
-# Initialisieren der Zeitstempel der Objekte und Messungen
-lasttime_foto       = 0             # Zeitstempel Kameramodul
-lasttime_measurement= 0             # Zeitstempel Messungen
-lasttime_lamps_on   = 0             # Zeitstempel Lampen 
-lasttime_lamps_off  = 0             # Zeitstempel Lampen
-lasttime_airpump_on = 0             # Zeitstempel Pumpe
-lasttime_airpump_off= 0             # Zeitstempel Pumpe
-lasttime_fertilizer = 0             # Zeitstempel Düngepumpe
-datapoint = 0                       # Anzahl Messungen
-
-# Initialisieren der Aktoren
-lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin, on_time=parameters.lamps_on_time, off_time=parameters.lamps_off_time)
-airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin, on_time=parameters.airpump_on_time, off_time=parameters.airpump_off_time)
-fertilizerpump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
-
-# Initialisieren der Kamera zur Fotoaufnahme
-#cam = CAM_control()
-
-# Initialisieren der Timer
-startsec = time()                   # Zeitstartwert für die Messungen in s
-timer = time()	                    # Zeitvariable für Messtiming
-
 try:
+
+    # Initialisieren der Zeitstempel der Objekte und Messungen
+    lasttime_foto       = 0             # Zeitstempel Kameramodul
+    lasttime_measurement= 0             # Zeitstempel Messungen
+    lasttime_lamps_on   = 0             # Zeitstempel Lampen 
+    lasttime_lamps_off  = 0             # Zeitstempel Lampen
+    lasttime_airpump_on = 0             # Zeitstempel Pumpe
+    lasttime_airpump_off= 0             # Zeitstempel Pumpe
+    lasttime_fertilizer = 0             # Zeitstempel Düngepumpe
+    datapoint = 0                       # Anzahl Messungen
+
+    # Initialisieren der Aktoren
+    lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin, on_time=parameters.lamps_on_time, off_time=parameters.lamps_off_time)
+    airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin, on_time=parameters.airpump_on_time, off_time=parameters.airpump_off_time)
+    fertilizerpump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
+
+    # Initialisieren der Kamera zur Fotoaufnahme
+    #cam = CAM_control()
+
+    # Initialisieren der Timer
+    startsec = time()                   # Zeitstartwert für die Messungen in s
+    timer = time()	                    # Zeitvariable für Messtiming
+
     # Startprozedur der Düngepumpe
     fertilizerpump.startup()
     if fertilizerpump.flooded == True:
@@ -72,7 +73,7 @@ try:
             if (lamps.status == True) and (timer-lasttime_lamps_on >= parameters.lamps_on_time):
                 lasttime_lamps_off = timer
                 lamps.off()  
-                
+
             # Aufnehmen der Fotos
 #            if timer-lasttime_foto >= parameters.sampletime_cam:
 #                lasttime_foto = timer
