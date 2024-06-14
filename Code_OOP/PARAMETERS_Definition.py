@@ -12,12 +12,12 @@ class parameters:
     runtime = 60*60*24*14 # Gesamtversuchszeit/s
 
     # Steuerparameter der Lampen
-    lamps_on_time       = 60*60*24*7 # 24/7 an
-    lamps_off_time      = 0 # 0 Stunden
+    lamps_on_time       = 60*2 # 24/7 an
+    lamps_off_time      = 60*2 # 0 Stunden
 
     # Steuerparameter der Luftpumpe
-    airpump_on_time     = 60*15 # 15 Minuten
-    airpump_off_time    = 60*15 # 15 Miuten
+    airpump_on_time     = 60*2 # 15 Minuten
+    airpump_off_time    = 60*2 # 15 Miuten
 
     # Steuerparameter der CO2-Diffusoren
     co2diffusor_on_time = 60*15

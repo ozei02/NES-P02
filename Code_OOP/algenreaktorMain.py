@@ -42,6 +42,19 @@ try:
         # Start der Hauptschleife des Programms
         while timer-startsec <= parameters.runtime:
 
+            # Durchführen der Messungen
+            if timer-lasttime_measurement >= parameters.sampletime_measurements:
+                lasttime_measurement = timer
+                measurement_bright(lamps=lamps, airpump=airpump)
+                measurement_dark(lamps=lamps, airpump=airpump)
+                print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
+                datapoint += 1 
+
+            # Steuern der Düngepumpe   
+            if timer-lasttime_fertilizer >= parameters.fertilizationpump_off_time:
+                fertilizerpump.on()
+                lasttime_fertilizer = timer
+
             # Pumpe ein-/ausschalten (Zeitsteuerung)
             if (airpump.status == False) and (timer-lasttime_airpump_off >= parameters.airpump_off_time):
                 lasttime_airpump_on = timer
@@ -59,19 +72,6 @@ try:
             if (lamps.status == True) and (timer-lasttime_lamps_on >= parameters.lamps_on_time):
                 lasttime_lamps_off = timer
                 lamps.off()  
-
-            # Durchführen der Messungen
-            if timer-lasttime_measurement >= parameters.sampletime_measurements:
-                lasttime_measurement = timer
-                measurement_bright(lamps=lamps, airpump=airpump)
-                measurement_dark(lamps=lamps, airpump=airpump)
-                print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
-                datapoint += 1 
-
-            # Steuern der Düngepumpe   
-            if timer-lasttime_fertilizer >= parameters.fertilizationpump_off_time:
-                fertilizerpump.on()
-                lasttime_fertilizer = timer
                 
             # Aufnehmen der Fotos
 #            if timer-lasttime_foto >= parameters.sampletime_cam:
