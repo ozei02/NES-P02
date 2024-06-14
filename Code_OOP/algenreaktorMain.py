@@ -60,11 +60,6 @@ try:
                 lasttime_lamps_off = timer
                 lamps.off()  
 
-            # Steuern der Düngepumpe   
-            if timer-lasttime_fertilizer >= parameters.fertilizationpump_off_time:
-                fertilizerpump.on()
-                lasttime_fertilizer = timer
-
             # Durchführen der Messungen
             if timer-lasttime_measurement >= parameters.sampletime_measurements:
                 lasttime_measurement = timer
@@ -73,6 +68,11 @@ try:
                 print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
                 datapoint += 1 
 
+            # Steuern der Düngepumpe   
+            if timer-lasttime_fertilizer >= parameters.fertilizationpump_off_time:
+                fertilizerpump.on()
+                lasttime_fertilizer = timer
+                
             # Aufnehmen der Fotos
 #            if timer-lasttime_foto >= parameters.sampletime_cam:
 #                lasttime_foto = timer
