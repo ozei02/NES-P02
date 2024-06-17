@@ -65,7 +65,6 @@ class MOSFET_control:
         self.pwm.ChangeDutyCycle(self.dutycycle)
         time.sleep(self.actiontime)
         self.off()
-        print("Düngung durchgeführt")
 
     # Ende der Pulsweitenmodulation
     def off(self):
