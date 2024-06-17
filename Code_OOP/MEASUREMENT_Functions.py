@@ -1,15 +1,7 @@
 import csv
 import datetime
 import time
-from PHOTOSENSOR_Classdefinition import PHOTOSENSOR_reading
-from PHPROBE_Classdefinition import PHPROBE_reading
-from TEMPSENSOR_Classdefinition import TEMPSENSOR_reading
 from PARAMETERS_Definition import parameters
-
-# Erstellen der Objekte für die einzelnen Sensoren
-photosensor = PHOTOSENSOR_reading() # Photosensor
-ph_probe = PHPROBE_reading() # pH-Sonde
-T_sensor = TEMPSENSOR_reading() # Temperatursensor
 
 # Funktion zum Abspeichern der Messwerte in einer csv-Datei
 def SAVEDATA(photosensor_values, phprobe_values, temp_values, filename):
@@ -28,7 +20,7 @@ def SAVEDATA(photosensor_values, phprobe_values, temp_values, filename):
         print(f"Daten gespeichert: {data_row}")
 
 # Messung mit Lampen an und Pumpe aus
-def measurement_bright(lamps, airpump):
+def measurement_bright(lamps, airpump, photosensor, ph_probe, T_sensor):
 
     # Ausgabe zum Start der Messung
     print("Messung mit Hintergrundbeleuchtung gestartet")
@@ -95,7 +87,7 @@ def measurement_bright(lamps, airpump):
     print(f"{date_time}: Zustand vor Messung wieder hergestellt") 
 
 # Messung mit Lampen aus und Pumpen aus
-def measurement_dark(lamps, airpump):
+def measurement_dark(lamps, airpump, photosensor, ph_probe, T_sensor):
 
     # Ausgabe zum Start der Messung
     print("Messung ohne Hintergrundbeleuchtung gestartet")

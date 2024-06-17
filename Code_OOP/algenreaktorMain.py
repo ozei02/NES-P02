@@ -2,7 +2,9 @@ from PARAMETERS_Definition import parameters
 from WIRELESSSOCKET_Classdefinition import WIRELESSSOCKET_control
 from MOSFET_Classdefinition import MOSFET_control
 from CAM_Classdefinition import CAM_control
-from MEASUREMENT_Functions import photosensor
+from PHOTOSENSOR_Classdefinition import PHOTOSENSOR_reading
+from PHPROBE_Classdefinition import PHPROBE_reading
+from TEMPSENSOR_Classdefinition import TEMPSENSOR_reading
 from time import time
 from MEASUREMENT_Functions import measurement_bright, measurement_dark
 import datetime
@@ -22,7 +24,13 @@ try:
     # Initialisieren der Aktoren
     lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin)
     airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin)
+    co2gas = WIRELESSSOCKET_control(pin=parameters.co2gas_pin)
     fertilizerpump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
+
+    # Initialisieren der Sensoren
+    photosensor = PHOTOSENSOR_reading() # Photosensor
+    ph_probe = PHPROBE_reading() # pH-Sonde
+    T_sensor = TEMPSENSOR_reading() # Temperatursensor
 
     # Initialisieren der Kamera zur Fotoaufnahme
     cam = CAM_control()
@@ -46,8 +54,8 @@ try:
             # Durchführen der Messungen
             if timer-lasttime_measurement >= parameters.sampletime_measurements:
                 lasttime_measurement = timer
-                measurement_bright(lamps=lamps, airpump=airpump)
-                measurement_dark(lamps=lamps, airpump=airpump)
+                measurement_bright(lamps=lamps, airpump=airpump, photosensor=photosensor, ph_probe=ph_probe, T_sensor=T_sensor)
+                measurement_dark(lamps=lamps, airpump=airpump, photosensor=photosensor, ph_probe=ph_probe, T_sensor=T_sensor)
                 print(f"Messung {datapoint}/{parameters.datapoints_overall} abgeschlossen ...\n")
                 datapoint += 1 
 
@@ -100,6 +108,19 @@ try:
                 # nur Fotos aufnehmen, wenn die Lampen an sind
                 if lamps.status == True: 
                     cam.get_photo()
+
+            # Steuerung der CO2-Begasung in Abhängigkeit vom pH-Wert
+            pH_current = ph_probe.measure()
+
+            if (lamps.status == True) and (pH_current <= parameters.ph_min):
+                co2gas.on()
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: CO2-Begasung pH-Wert gesteuert gestartet (pH-Wert = {pH_current})")
+
+            if pH_current >= parameters.ph_max:
+                co2gas.off()
 
             timer = time()
 

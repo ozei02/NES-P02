@@ -35,6 +35,10 @@ class parameters:
     # Anzahl Messungen pro Messpunkt
     datapoints_per_measuringpoint = 5
 
+    # Gewünschter Bereich des pH-Werts
+    ph_max = 10.2
+    ph_min = 10.0
+
     # Parameter für Hardware (nur bei Änderungen der Hardware anpassen)
 
     # Feste Parameter der Düngerpumpe
@@ -49,7 +53,7 @@ class parameters:
     wirelesssocket_pin_off = 22
     lamps_pin = 17
     airpump_pin = 18
-    co2diffusor_pin = 5
+    co2gas_pin = 5
     fertilizerpump_pin = 25
 
     # Berechnung Anzahl Messpunkte
