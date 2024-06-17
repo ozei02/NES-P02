@@ -20,8 +20,8 @@ try:
     datapoint = 0                       # Anzahl Messungen
 
     # Initialisieren der Aktoren
-    lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin, on_time=parameters.lamps_on_time, off_time=parameters.lamps_off_time)
-    airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin, on_time=parameters.airpump_on_time, off_time=parameters.airpump_off_time)
+    lamps = WIRELESSSOCKET_control(pin=parameters.lamps_pin)
+    airpump = WIRELESSSOCKET_control(pin=parameters.airpump_pin)
     fertilizerpump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
 
     # Initialisieren der Kamera zur Fotoaufnahme
@@ -52,27 +52,47 @@ try:
                 datapoint += 1 
 
             # Steuern der Düngepumpe   
-            if timer-lasttime_fertilizer >= parameters.fertilizationpump_off_time:
-                fertilizerpump.on()
+            if timer-lasttime_fertilizer >= parameters.fertilizerpump_off_time:
                 lasttime_fertilizer = timer
+                fertilizerpump.on()
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: Düngung durchgeführt")
 
             # Pumpe ein-/ausschalten (Zeitsteuerung)
             if (airpump.status == False) and (timer-lasttime_airpump_off >= parameters.airpump_off_time):
                 lasttime_airpump_on = timer
                 airpump.on()
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: Luftpumpe zeitgesteuert eingeschaltet nach {(parameters.airpump_off_time)/60:5.1f} Minuten")
 
             if (airpump.status == True) and (timer-lasttime_airpump_on >= parameters.airpump_on_time):
                 lasttime_airpump_off = timer
                 airpump.off()
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: Luftpumpe zeitgesteuert ausgeschaltet nach {(parameters.airpump_on_time)/60:5.1f} Minuten")
 
             # Licht ein-/ausschalten (Zeitsteuerung)
             if (lamps.status == False) and (timer-lasttime_lamps_off >= parameters.lamps_off_time):
                 lasttime_lamps_on = timer
                 lamps.on()
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: Lampen zeitgesteuert eingeschaltet nach {(parameters.lamps_off_time)/60:5.1f} Minuten")
 
             if (lamps.status == True) and (timer-lasttime_lamps_on >= parameters.lamps_on_time):
                 lasttime_lamps_off = timer
                 lamps.off()  
+                # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+                now = datetime.datetime.now() # aktuelles Datum und Zeit
+                date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+                print(f"{date_time}: Lampen zeitgesteuert ausgeschaltet nach {(parameters.lamps_on_time)/60:5.1f} Minuten")
 
             # Aufnehmen der Fotos
             if timer-lasttime_foto >= parameters.sampletime_cam:

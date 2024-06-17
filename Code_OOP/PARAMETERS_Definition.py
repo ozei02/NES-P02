@@ -42,7 +42,7 @@ class parameters:
     fertilizerpump_startuptime = 10
     fertilizerpump_actiontime = 0.55 # Zeit die die Düngerpumpe zum pumpen von einem ml Flüssigkeit benötigt
     # Berechnung des Düngeintervalls anhand der geforderten Menge pro Tag
-    fertilizationpump_off_time = (60*60*24/V_fertilization)-fertilizerpump_actiontime 
+    fertilizerpump_off_time = (60*60*24/V_fertilization) 
 
     # Anschlusspins am Raspberry
     wirelesssocket_pin_on = 27

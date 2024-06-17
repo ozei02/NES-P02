@@ -45,9 +45,19 @@ def measurement_bright(lamps, airpump):
 
     # Status von Lampen und Pumpe anpassen
     if lamps.status == False:
-        lamps.on_for_measurement()
+        lamps.on()
+        # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        print(f"{date_time}: Lampen für Messung eingeschaltet")
+
     if airpump.status == True:
-        airpump.off_for_measurement()
+        airpump.off()
+        # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        print(f"{date_time}: Luftpumpe für Messung ausgeschaltet")
+
     time.sleep(2) # Beruhigungszeit für die Messung
 
     # Schleife über die Anzahl der Messungen pro Messpunkt
@@ -71,13 +81,18 @@ def measurement_bright(lamps, airpump):
 
     # Zurückschalten der Schaltobjekte auf den Ausgangszustand
     if lamps.statusbeforemeasurement == True:
-        lamps.on_for_measurement()
+        lamps.on()
     if lamps.statusbeforemeasurement == False:
-        lamps.off_for_measurement()
+        lamps.off()
     if airpump.statusbeforemeasurement == True:
-        airpump.on_for_measurement()
+        airpump.on()
     if airpump.statusbeforemeasurement == False:
-        airpump.off_for_measurement() 
+        airpump.off() 
+
+    # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+    now = datetime.datetime.now() # aktuelles Datum und Zeit
+    date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+    print(f"{date_time}: Zustand vor Messung wieder hergestellt") 
 
 # Messung mit Lampen aus und Pumpen aus
 def measurement_dark(lamps, airpump):
@@ -100,9 +115,19 @@ def measurement_dark(lamps, airpump):
 
     # Status von Lampen und Pumpe anpassen
     if lamps.status == True:
-        lamps.off_for_measurement()
+        lamps.off()
+        # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        print(f"{date_time}: Lampen für Messung ausgeschaltet")
+
     if airpump.status == True:
-        airpump.off_for_measurement()
+        airpump.off()
+        # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+        now = datetime.datetime.now() # aktuelles Datum und Zeit
+        date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+        print(f"{date_time}: Luftpumpe für Messung ausgeschaltet")
+
     time.sleep(2) # Beruhigungszeit für die Messung
 
     # Schleife über die Anzahl der Messungen pro Messpunkt
@@ -129,10 +154,15 @@ def measurement_dark(lamps, airpump):
 
     # Zurückschalten der Schaltobjekte auf den Ausgangszustand
     if lamps.statusbeforemeasurement == True:
-        lamps.on_for_measurement()
+        lamps.on()
     if lamps.statusbeforemeasurement == False:
-        lamps.off_for_measurement()
+        lamps.off()
     if airpump.statusbeforemeasurement == True:
-        airpump.on_for_measurement()
+        airpump.on()
     if airpump.statusbeforemeasurement == False:
-        airpump.off_for_measurement()  
+        airpump.off()
+
+    # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
+    now = datetime.datetime.now() # aktuelles Datum und Zeit
+    date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
+    print(f"{date_time}: Zustand vor Messung wieder hergestellt")  
