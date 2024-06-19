@@ -111,7 +111,7 @@ try:
 
             # Steuerung der CO2-Begasung in Abhängigkeit vom pH-Wert
 
-            # Mittelung des pH-Werts aus Einzelmessungen
+            # Mittelung des aktuellen pH-Werts aus Einzelmessungen
             pH_sum = 0
             for pH in range(parameters.datapoints_per_measuringpoint):
                 pH_datapoint = ph_probe.measure()
@@ -119,14 +119,14 @@ try:
             pH_current = pH_sum/parameters.datapoints_per_measuringpoint
 
             # Ein- und Ausschalten der Funksteckdose je nach gemessenem pH-Wert
-            if (co2gas.status == False) and (lamps.status == True) and (pH_current <= parameters.ph_min):
+            if (co2gas.status == False) and (lamps.status == True) and (pH_current >= parameters.ph_max):
                 co2gas.on()
                 # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
                 now = datetime.datetime.now() # aktuelles Datum und Zeit
                 date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
                 print(f"{date_time}: CO2-Begasung pH-Wert gesteuert gestartet (pH-Wert = {pH_current})")
 
-            if (co2gas.status == True) and (pH_current >= parameters.ph_max):
+            if (co2gas.status == True) and (pH_current <= parameters.ph_min):
                 co2gas.off()
                 # Codeblock zur Ausgabe der Änderung zum eingeschalteten Zustand im Command Fenster
                 now = datetime.datetime.now() # aktuelles Datum und Zeit

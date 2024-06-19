@@ -19,10 +19,6 @@ class parameters:
     airpump_on_time     = 60*2 # 15 Minuten
     airpump_off_time    = 60*2 # 15 Miuten
 
-    # Steuerparameter der CO2-Diffusoren
-    co2diffusor_on_time = 60*15
-    co2diffusor_off_time = 60*15
-
     # Volumen des Düngers das pro Tag in den Reaktor gegeben werden soll
     V_fertilization = 100 # ml/d
 
@@ -35,9 +31,9 @@ class parameters:
     # Anzahl Messungen pro Messpunkt
     datapoints_per_measuringpoint = 5
 
-    # Gewünschter Bereich des pH-Werts
-    ph_max = 10.2
-    ph_min = 10.0
+    # Gewünschter Bereich des pH-Werts (Steuerung über CO2-Diffusoren)
+    ph_max = 8.5
+    ph_min = 7.5
 
     # Parameter für Hardware (nur bei Änderungen der Hardware anpassen)
 
