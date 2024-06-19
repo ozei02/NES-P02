@@ -8,25 +8,25 @@ class parameters:
     filename_dark = "Messreihe_dark_BP24.csv"
     filename_bright = "Messreihe_bright_BP24.csv"
     
-    # Gesamtversuchszeit
-    runtime = 60*60*24*14 # Gesamtversuchszeit/s
+    # Gesamtversuchszeit/s
+    runtime = 60*60*24*14 
 
-    # Steuerparameter der Lampen
-    lamps_on_time       = 60*2 # 24/7 an
-    lamps_off_time      = 60*2 # 0 Stunden
+    # Steuerzeiten der Lampen/s
+    lamps_on_time       = 60*2
+    lamps_off_time      = 60*2 
 
-    # Steuerparameter der Luftpumpe
-    airpump_on_time     = 60*2 # 15 Minuten
-    airpump_off_time    = 60*2 # 15 Miuten
+    # Steuerzeiten der Luftpumpe/s
+    airpump_on_time     = 60*2
+    airpump_off_time    = 60*2 
 
-    # Volumen des Düngers das pro Tag in den Reaktor gegeben werden soll
+    # Volumen des Düngers/(ml/d) 
     V_fertilization = 100 # ml/d
 
-    # Abtastzeit der Messungen
-    sampletime_measurements = 60*2 # 30 Minuten
+    # Abtastzeit der Messungen/s
+    sampletime_measurements = 60*2 
 
-    # Abtastzeit der Kamera
-    sampletime_cam = 60*1 # 1 Stunde
+    # Abtastzeit der Kamera/s
+    sampletime_cam = 60*1 
 
     # Anzahl Messungen pro Messpunkt
     datapoints_per_measuringpoint = 5
@@ -35,14 +35,14 @@ class parameters:
     ph_max = 8.5
     ph_min = 7.5
 
-    # Parameter für Hardware (nur bei Änderungen der Hardware anpassen)
+    # Parameter für Hardware (nur bei Änderungen der Hardware und Anschlusspins am Raspberry anpassen)
 
     # Feste Parameter der Düngerpumpe
-    fertilizerpump_dutycycle = 37
-    fertilizerpump_startuptime = 10
+    fertilizerpump_dutycycle = 37 # Tastgrad je nach Versorgungsspannung der Düngepumpe und Netzteil anpassen
+    fertilizerpump_startuptime = 10 # Je nach Schlauchlänge der Pumpe und der sich ergebenden Durchflutungszeit anpassen
     fertilizerpump_actiontime = 0.55 # Zeit die die Düngerpumpe zum pumpen von einem ml Flüssigkeit benötigt
     # Berechnung des Düngeintervalls anhand der geforderten Menge pro Tag
-    fertilizerpump_off_time = (60*60*24/V_fertilization) 
+    fertilizerpump_off_time = (60*60*24/V_fertilization) # nicht ändern, wird automatisch neu berechnet
 
     # Anschlusspins am Raspberry
     wirelesssocket_pin_on = 27
@@ -53,5 +53,5 @@ class parameters:
     fertilizerpump_pin = 25
 
     # Berechnung Anzahl Messpunkte
-    datapoints_overall = runtime/sampletime_measurements
+    datapoints_overall = runtime/sampletime_measurements # nicht ändern
     

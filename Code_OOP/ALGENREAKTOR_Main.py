@@ -1,3 +1,5 @@
+# Skript zum Ausführen des Photobioreaktors
+
 from PARAMETERS_Definition import parameters
 from WIRELESSSOCKET_Classdefinition import WIRELESSSOCKET_control
 from MOSFET_Classdefinition import MOSFET_control
@@ -41,6 +43,7 @@ try:
 
     # Startprozedur der Düngepumpe
     fertilizerpump.startup()
+    # if-Schleife welche betreten wird sobald die Durchflutung der Pumpe vom Nutzer bestätig wird
     if fertilizerpump.flooded == True:
 
         # Ausgabe der Startzeit des Programms
@@ -141,8 +144,9 @@ except KeyboardInterrupt:
     # Ausschalten aller Objekte die per Funksteckdose gesteuert werden
     lamps.off()
     airpump.off()
+    co2gas.off()
     # Ausschalten der LED vom Photosensor
     photosensor.led = False
     # Bereinigen der Belegung der GPIO Pins (Gilt nicht nur für die Düngerpumpe sondern für alle Objekte)
     fertilizerpump.cleanup()
-    print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - PROGRAMMENDE")
+    print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - CO2-Diffusoren aus - PROGRAMMENDE")
