@@ -136,6 +136,7 @@ try:
                 date_time = now.strftime("%Y-%m-%d, %H:%M:%S") # Zeitstempel zu dem das Objekt geschaltet wird
                 print(f"{date_time}: CO2-Begasung pH-Wert gesteuert beendet (pH-Wert = {pH_current})")
 
+            # Setzen des Timers für den nächsten Durchlauf
             timer = time()
 
 except KeyboardInterrupt:
