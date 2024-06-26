@@ -49,7 +49,7 @@ class parameters:
     wirelesssocket_pin_off = 22
     lamps_pin = 17
     airpump_pin = 18
-    co2gas_pin = 5
+    co2gas_pin = 16
     fertilizerpump_pin = 25
 
     # Berechnung Anzahl Messpunkte
