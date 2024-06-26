@@ -22,23 +22,23 @@ class WIRELESSSOCKET_control:
     # Funktion wird ebenfalls bei Initialisierung ausgeführt um Relais zu Beginn auszuschalten
     # Achtung "on" bedeutet hier "off"
     def setup(self):
-        self.LED.on()
-        WIRELESSSOCKET_control.ON.on()
-        WIRELESSSOCKET_control.OFF.on()
+        self.LED.off()
+        WIRELESSSOCKET_control.ON.off()
+        WIRELESSSOCKET_control.OFF.off()
 
     # Definition von Klassenmethoden zum Ein- und Ausschalten der Steckdosen
     def on(self):
-        self.LED.off()
-        WIRELESSSOCKET_control.ON.off()
-        time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
         WIRELESSSOCKET_control.ON.on()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
+        self.LED.off()
+        WIRELESSSOCKET_control.ON.off()
         self.status = True # Ändern des Status des Objekts zu Eingeschaltet
 
     def off(self):
-        self.LED.off()
-        WIRELESSSOCKET_control.OFF.off()
-        time.sleep(WIRELESSSOCKET_control.schaltzeit)
         self.LED.on()
         WIRELESSSOCKET_control.OFF.on()
+        time.sleep(WIRELESSSOCKET_control.schaltzeit)
+        self.LED.off()
+        WIRELESSSOCKET_control.OFF.off()
         self.status = False # Ändern des Status des Objekts zu Ausgeschaltet
