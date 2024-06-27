@@ -139,6 +139,19 @@ try:
             # Setzen des Timers für den nächsten Durchlauf
             timer = time()
 
+        # Ausschalten der Objekte bei Programmende
+        # Ausschalten der Düngepumpe
+        fertilizerpump.off()
+        # Ausschalten aller Objekte die per Funksteckdose gesteuert werden
+        lamps.off()
+        airpump.off()
+        co2gas.off()
+        # Ausschalten der LED vom Photosensor
+        photosensor.led = False
+        # Bereinigen der Belegung der GPIO Pins (Gilt nicht nur für die Düngerpumpe sondern für alle Objekte)
+        fertilizerpump.cleanup()
+        print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - CO2-Diffusoren aus - PROGRAMMENDE durch Programmzeit")
+
 except KeyboardInterrupt:
     # Ausschalten der Düngepumpe
     fertilizerpump.off()
@@ -150,4 +163,4 @@ except KeyboardInterrupt:
     photosensor.led = False
     # Bereinigen der Belegung der GPIO Pins (Gilt nicht nur für die Düngerpumpe sondern für alle Objekte)
     fertilizerpump.cleanup()
-    print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - CO2-Diffusoren aus - PROGRAMMENDE")
+    print("\nSensor-LED aus - Lüftung aus - Lampen aus - Düngerpumpe aus - CO2-Diffusoren aus - PROGRAMMENDE durch User")
