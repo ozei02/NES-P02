@@ -1,7 +1,8 @@
-from MOSFET_Classdefinition import MOSFET_Steuerung
+from MOSFET_Classdefinition import MOSFET_control
 import time
+from PARAMETERS_Definition import parameters
 
-pump = MOSFET_Steuerung(pin=17, tastgrad=39)
+pump = MOSFET_control(pin=parameters.fertilizerpump_pin, dutycycle=parameters.fertilizerpump_dutycycle, startuptime=parameters.fertilizerpump_startuptime, actiontime=parameters.fertilizerpump_actiontime)
 
 start_time = time.time() # Startzeit speichern
 
@@ -16,7 +17,7 @@ except KeyboardInterrupt:
     print(f"Laufzeit: {elapsed_time:.2f} Sekunden")
 
     # Pumpzeit in Datei abspeichern
-    with open("laufzeit.txt", "a") as file:  # Datei im Append-Modus öffnen
+    with open("laufzeit_fluten.txt", "a") as file:  # Datei im Append-Modus öffnen
         file.write(f"Laufzeit: {elapsed_time:.2f} Sekunden\n")
 
 
