@@ -8,10 +8,10 @@ start_time = time.time() # Startzeit speichern
 
 try:
     while True:
-        pump.start()
+        pump.on()
 
 except KeyboardInterrupt:
-    pump.stop()
+    pump.off()
     end_time = time.time() # Endzeit speichern
     elapsed_time = end_time - start_time # Pumpzeit berechnen
     print(f"Laufzeit: {elapsed_time:.2f} Sekunden")
